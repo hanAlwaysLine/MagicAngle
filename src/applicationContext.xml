@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>      
+    <beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd        
+          http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop.xsd"> 
+	
+	<!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->     
+ <!--  <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
+     
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>  
+     <context:component-scan base-package="*"/>
+    <context:annotation-config/>
+    <!-- aop注解风格支持 -->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+  <!-- 引入外部文件 -->
+  <context:property-placeholder location="classpath:jdbc.properties"/>
+  <!-- 连接池 -->
+  <bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+
+      <property name="driverClass" value="${jdbc.driverClass}"></property>  
+    <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>  
+    <property name="user" value="${jdbc.user}"></property>  
+    <property name="password" value="${jdbc.password}"></property>  
+      <property name="acquireIncrement" value="${jdbc.acquireIncrement}"></property>  
+    <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>  
+    <property name="maxIdleTime" value="${jdbc.maxIdleTime}"></property>  
+    <property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>  
+    <property name="minPoolSize" value="${jdbc.minPoolSize}"></property>  
+     <property name="acquireRetryDelay" value="1000"></property>  
+    <property name="acquireRetryAttempts" value="60"></property>  
+    <property name="breakAfterAcquireFailure" value="false"></property>  
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+<!-- 
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
+            <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>  -->
+			</props>
+		</property>
+		
+		<property name="mappingResources">
+			<list>
+				<value>cn/manage/entity/user.hbm.xml</value></list>
+		</property>
+		</bean>
+		<!-- 使bean能获取当前session -->
+  
+<tx:advice id="baseServiceAdvice" transaction-manager="transactionManager">
+
+   <tx:attributes>
+
+      <tx:method name="get*" read-only="true" propagation="REQUIRED"/><!--之前是NOT_SUPPORT-->
+
+      <tx:method name="find*" read-only="true" propagation="REQUIRED"/><!--之前是NOT_SUPPORT-->
+
+      <tx:method name="save*" propagation="REQUIRED"/>
+
+      <tx:method name="update*" propagation="REQUIRED"/>
+
+      <tx:method name="remove*" propagation="REQUIRED"/>
+
+      <tx:method name="add*" propagation="REQUIRED"/>
+
+      <!--默认其他方法都是REQUIRED-->
+
+      <tx:method name="*"/>
+
+   </tx:attributes>
+
+</tx:advice>
+		<!-- 配置食物管理器 -->
+		<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+		<!-- 开启注解 -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+  <!-- 配置Action -->
+
+  <!-- 配置业务层的类 -->
+  <!-- 配置DAO的类 -->
+	<bean id="baseDaoSession" class="cn.manage.baseInterface.BaseDaoSession">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 配置mybatis -->
+	    <bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource"  
+        destroy-method="close">  
+        <property name="driverClassName" value="${jdbc.driverClass}" />  
+        <property name="url" value="${jdbc.jdbcUrl}" />  
+        <property name="username" value="${jdbc.user}" />  
+        <property name="password" value="${jdbc.password}" />  
+        <!-- 初始化连接大小 -->  
+        <property name="initialSize" value="0"></property>  
+        <!-- 连接池最大数量 -->  
+        <property name="maxActive" value="20"></property>  
+        <!-- 连接池最大空闲 -->  
+        <property name="maxIdle" value="20"></property>  
+        <!-- 连接池最小空闲 -->  
+        <property name="minIdle" value="0"></property>  
+        <!-- 获取连接最大等待时间 -->  
+        <property name="maxWait" value="60000"></property>  
+    </bean>  
+  
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource2" />  
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:cn/manage/mapping/*.xml"></property>  
+        
+    </bean>  
+  
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="cn.manage.mapper" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+    </bean>  
+</beans>
