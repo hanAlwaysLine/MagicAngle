@@ -56,7 +56,8 @@
 		
 		<property name="mappingResources">
 			<list>
-				<value>cn/manage/entity/user.hbm.xml</value></list>
+				<value>cn/manage/entity/user.hbm.xml</value>
+            </list>
 		</property>
 		</bean>
 		<!-- 使bean能获取当前session -->
