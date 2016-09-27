@@ -13,5 +13,11 @@
         <property name="password" type="string">
             <column name="password" />
         </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
     </class>
 </hibernate-mapping>

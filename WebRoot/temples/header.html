@@ -1,0 +1,47 @@
+		<meta charset="utf-8"/>
+		<style>
+		html{margin: 0px;padding: 0px;}
+		body{margin: 0 auto;text-align: center;overflow-x: hidden;font-family: "微软雅黑";}
+		a{text-decoration: none;}
+		 .top{height: 70px;width:1024px;min-width: 1024px;max-width: 1024px;background: #fff;margin: 0 auto;margin-top: 17px;}
+		 .top .logo{float: left;}
+		 .top .search_form{float: right;height: 70px;width: 350px;}
+		 .top .search_form .user-info{display: block;height: 30px;line-height: 30px;}
+		 .top .search_form .user-info a{color:#dcdcdc;font-size: 17px;}
+		 .top .search_form .user-info a.info-left{float:right;}
+		 .top .search_form .user-info a.info-right{float:right;margin-right: 50px;margin-left: 40px;}
+		 .top .search_form input{height: 40px;color:#fff;border: 0px;background:#dcdcdc;padding: 10px 10px;width: 200px;}
+		 .top .search_form input.search_btn{height: 40px;width:60px;display:inline-block;margin-left:-5px;border-left: 1px dashed #fff;background-image: url(images/search_03.png);background-repeat: no-repeat;background-position: center;}
+		 nav{height: 80px;width: 100%;background:#ffd04b;margin-top: 16px;}
+		 nav ul{width:1024px;min-width: 1024px;max-width: 1024px;margin:0 auto;list-style-type: none;}
+		 nav ul li{height:50px;margin-top:13px;float: left;border-right: 1px dotted #fff;padding: 6px 35px 0px 35px;}
+		 .clearM{padding-left: 0px;}
+		 nav ul li a{color: #fff;font-size: 17px;}
+		 nav ul li a:active,nav ul li a:hover,nav ul li a.current{color: #71422e;}
+		 nav ul li a span{margin: auto 0;display: block;font-size: 14px;margin-top: 2px;}
+		 </style>
+		<body topmargin='0' leftmargin='0' border='0'>
+			
+        <div class="top">
+          <a href="index.html" class="logo"><img src="../images/zhuye/lmcb_03.gif" alt="网站名称" /></a>
+          <form action="#" method="post" name="search_form" class="search_form">
+             <span id="undefined" class="user-info"><a href="register.html" class="info-right" id="register">注册</a><a href="login.html" class="info-left" id="login">请登录</a></span>
+             <span id="user"class="user-info" style="display: none;"><a href="user.html" class="info-left" id="user">Hi,一只花兔兔</a><a href="exit.html" class="info-right" id="exit">退出</a></span>
+            <input type="text" name="search_input" class="search_input" placeholder="请输入搜索内容"/>
+            
+            <input type="button" class="search_btn" value="."/>
+          </form>
+        </div>
+        <nav>
+         <ul class="nav_list">
+         	<li class="clearM"><a href="../index.html">首页<span>Home</span></a></li>
+         	<li><a href="zhanshi.html">展示<span>Show</span></a></li>
+         	<li><a href="rencaiku.html">教学平台<span>Home</span></a></li>
+         	<li><a href="xiule.html">秀乐<span>Home</span></a></li>
+         	<li><a href="tonggao.html">通告<span>Notice</span></a></li>
+         	<li><a href="private.html">私人定制<span>Private custom</span></a></li>
+         	<li><a href="tongshi.html">电子杂志<span>Home</span></a></li>
+         	<li style="border-right: 0px;"><a href="gs.html">购物商城<span>Shopping</span></a></li>
+         </ul>
+        </nav>
+        </body>

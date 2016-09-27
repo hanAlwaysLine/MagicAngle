@@ -27,6 +27,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		userSer.save(user);
 
 		System.out.println("Action中保存user");
+
 		System.out.println("=============="+userMapperService.getUser().get(2).getUsername());
 		return "success";
 	}

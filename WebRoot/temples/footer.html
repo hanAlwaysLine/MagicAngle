@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>童视</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-COMPATIBLE" CONTENT="IE=Edge,chorme=1">
+	<style type="text/css">
+	.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+	.clearfix:before {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+	.clearfix {display:block;} 
+	.clearfix {
+	display:inline-block;
+		}
+	*{
+			margin: 0;
+			padding: 0;
+	}
+	footer{
+		width: 100%;
+		background-color: #2e2e2e;
+		position: fixed;
+		bottom: 0px;
+		border: none;
+	}
+	footer #footer-inner{
+	width: 46.09%;/*885px*/
+	height: 216px;
+	color:#ececec;
+	margin: 0 auto;
+	
+}
+
+footer #footer-inner #guanyu,#hezuo,#shengming,#help,#more{
+	margin-top: 48px;
+	width:16.03%;/*152px*/
+	float: left;
+	margin-left:8px; 
+	margin-bottom: 64px;
+
+}
+footer #footer-inner  p{
+	font-size: 16px;
+	margin-left: 16px;
+
+}
+footer #footer-inner #hezuo #touzi,#yinsi{
+	margin-left: 8px;
+}
+footer #footer-inner #design{
+	margin-left: -12px;
+}
+
+footer #footer-inner #guanyu,#hezuo,#shengming,#help,#more,ul li{
+	line-height: 28px
+}
+footer #toper img{
+	float: left;
+}
+footer #footer-inner #erwei img{
+	margin-top: 41px;
+}
+* html .clearfix{zoom:1;} /* IE6 */
+* html .clearfix{zoom:1;} /* IE7 */
+.clear{
+	clear:both;
+	visibility:hidden; 
+	}
+
+footer ul li{
+			list-style: none;
+}
+
+	</style>
+	</head>
+	<body>
+			<footer >
+			<div id="top" style="width:100%;background-color:#eeeeee;cursor:pointer;">
+				<div id="topimg" style="width:109px;height:42px;padding-left:47.23%;padding-bottom:2px;">
+					<a href=""><img src="../images/zhuye/footertopb.png" alt="" ></a>
+				</div>
+			</div>
+			<div id="toper">
+					<img src="../images/zhuye/left_02.png" style="float:left;width:47.03%">
+					<img src="../images/zhuye/footerright_04.png " alt="three" style="float:right;width:47.03%">
+			</div>	
+			<div id="footer-inner"   >
+			
+
+			<div id="clear"></div>
+
+				<div id="guanyu">
+					<p>关于</p>	
+					<ul>
+						<li>了解JUMO</li>
+						<li>JUMO事件</li>
+						<li>加入JUMO</li>
+					</ul>
+				</div>
+				<div id="hezuo" style="display:inline-block">
+					<p>合作</p>
+					<ul>
+						<li>市场商业合作</li>
+						<li>艺人经济合作</li>
+						<li id="touzi">投资与资本</li>
+					</ul>
+				</div>
+				<div id="shengming">
+					<p>声明</p>
+					<ul>
+						<li>JUMO声明</li>
+						<li id="design">产品设计与保护</li>
+						<li id="yinsi">隐私政策</li>
+					</ul>			
+				</div>
+				<div id="help">
+					<p>帮助</p>
+					<ul>
+						<li>官方互动</li>
+						<li>防骗说明</li>
+						<li>联系方式</li>	
+					</ul>
+				</div>
+				<div id="more">
+					<p>更多</p>
+					<ul>
+						<li>合作链接</li>
+						<li>关注我们</li>
+						<li>一键分享</li>
+					</ul>
+				</div>
+				<div id="erwei">
+					<img src="../images/zhuye/erwei_03.png" alt="js">
+				</div>
+			</div>
+		</footer>
+<script>
+window.onload = function(){
+  var oTop = document.getElementById("topimg");
+  var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+  var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+  oTop.style.left = screenw - oTop.offsetWidth +"px";
+  oTop.style.top = screenh - oTop.offsetHeight + "px";
+  window.onscroll = function(){
+    var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+    oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+  }
+  oTop.onclick = function(){
+    document.documentElement.scrollTop = document.body.scrollTop =0;
+  }
+}  
+
+</script>
+	</body>
+	</html>

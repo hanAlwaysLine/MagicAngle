@@ -12,6 +12,9 @@ public class User implements java.io.Serializable {
 	private String username;
 	private String password;
 
+	private String phone;
+	private String address;
+
 	// Constructors
 
 	/** default constructor */
@@ -48,6 +51,22 @@ public class User implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }
